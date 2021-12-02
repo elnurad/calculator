@@ -1,0 +1,39 @@
+/* body{
+    background-color: pink;
+} */
+.container {
+   
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 35%;
+    height: 80vh;
+    margin: 5% auto;
+    
+   
+    
+}
+
+.calculator{
+    border: solid black;
+    background-color:grey;
+    text-align: center;
+    
+    
+    
+}
+.display {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    background-color: #ffffff;
+    text-align: right;
+}
+.clear {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: green;
+}
+.delete {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    background-color: green;
+}
