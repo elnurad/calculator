@@ -1,13 +1,29 @@
 //functions for basic operations
-const add =(a, b) => a + b;
+// const add =(a, b) => a + b;
 
-const subtract = (a, b)=>a - b;
+// const subtract = (a, b)=>a - b;
 
-const multiply=(a, b)=> a * b;
+// const multiply=(a, b)=> a * b;
 
-const divide = (a, b) => a / b;
+// const divide = (a, b) => a / b;
 
-const operate = (operator, a, b) => operator(a, b)
+// const operate = (a, operator, b) => operator(a, b)
+// operate(1, add 2) => 1+2
+
+// let result = eval(`${arr[0]}${arr[1]}${arr[2]}`)
+
+const calculation =(a, operator, b)=>{
+    switch(operator){
+        case '+': return a + b;
+        case '-': return a-b;
+        case '*': return a * b;
+        case '/': return a / b;
+    }
+
+}
+
+
+
 //display
 const display = document.querySelector('.display');
 console.log(display.innerHTML)
@@ -17,6 +33,7 @@ const buttons = Array.from(document.getElementsByClassName('calculator'))
 let currentDisplayValue = ''
 
 
+let result = ''
 
 const updateDisplay =()=>{
     buttons.forEach(button=>{
@@ -28,20 +45,34 @@ const updateDisplay =()=>{
             if (button.innerHTML === '='){
                 const arr = currentDisplayValue.split(/\b/g)
                 while(arr[3]!=='='){
-                    let result = eval(`${arr[0]}${arr[1]}${arr[2]}`)
+                    let result = calculation(parseInt(arr[0]), arr[1], parseInt(arr[2]))
                     arr.splice(0,3)
                     arr.unshift(result)
+                    display.innerHTML = String(result)
+                   
                     console.log(result)
 
-                } if(arr[3]==='='){
-                    let result = eval(`${arr[0]}${arr[1]}${arr[2]}`)
+                } 
+                if(arr[3]==='='){
+                    let result = calculation(parseInt(arr[0]), arr[1], parseInt(arr[2]))
+                    display.innerHTML = String(result)
                     console.log(result)
+                    
+
+                    
+
+                    
 
                 }
-                
+           
+           
+
+
+
+          
 
             }
-            console.log(currentDisplayValue)
+           
             
             
     
@@ -50,6 +81,51 @@ const updateDisplay =()=>{
     
     })
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const updateDisplay =()=>{
+//     buttons.forEach(button=>{
+//         button.addEventListener('click', function(){
+//             display.innerHTML += button.innerHTML;
+//             currentDisplayValue = display.innerHTML;
+
+
+//             if (button.innerHTML === '='){
+//                 const arr = currentDisplayValue.split(/\b/g)
+//                 while(arr[3]!=='='){
+//                     let result = eval(`${arr[0]}${arr[1]}${arr[2]}`)
+//                     arr.splice(0,3)
+//                     arr.unshift(result)
+//                     console.log(result)
+
+//                 } if(arr[3]==='='){
+//                     let result = eval(`${arr[0]}${arr[1]}${arr[2]}`)
+//                     console.log(result)
+
+//                 }
+                
+
+//             }
+//             console.log(currentDisplayValue)
+            
+            
+    
+    
+//         })
+    
+//     })
+//     };
 
 
 
