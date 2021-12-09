@@ -1,3 +1,20 @@
+let operatorIsExpected = false;
+
+let numberIsExpected = true;
+
+let result = ''
+
+const equals = document.querySelector('.equal')
+
+const display = document.querySelector('.display');
+console.log(display.innerHTML)
+let displayValue = display.innerHTML
+
+const buttons = Array.from(document.getElementsByClassName('calculator'))
+
+const numberButtons = Array.from(document.getElementsByClassName('num-button'));
+
+const decimal = document.querySelector('.decimal')
 
 const calculation =(a, operator, b)=>{
     switch(operator){
@@ -10,71 +27,80 @@ const calculation =(a, operator, b)=>{
 }
 
 
-//display
-const display = document.querySelector('.display');
-console.log(display.innerHTML)
 
+//clear
 const clear = document.querySelector('.clear')
+
 const clearDisplay=()=>{
     clear.addEventListener('click', ()=> {
-        display.innerHTML = ''
-        displayValue = ''
-        console.log('clear')})
+        display.innerHTML = '0'
+        displayValue = '0'
+        numberIsExpected = true;
+        console.log(numberIsExpected)})
     
     
 }
-// const numberButtons = Array.from(document.getElementsByClassName('num_button'));
-const buttons = Array.from(document.getElementsByClassName('calculator'))
-
-let displayValue = ''
 
 
-let result = ''
-
-
-
-
-let operatorIsExpected = false;
-
-const numberButtons = Array.from(document.getElementsByClassName('num-button'));
 
 
 const numbersOnScreen = ()=>{
     numberButtons.forEach(button=>{
-        button.addEventListener('click', function(){
-            display.innerHTML += button.innerHTML;
-            displayValue = display.innerHTML;
-            operatorIsExpected = true;
+        button.addEventListener('click', (e)=>{
+            if (numberIsExpected){
+                if(display.innerText === '0' && e.target.dataset.value === 0){
+                
+                    display.innerHTML = button.innerHTML;
+                    displayValue = display.innerHTML;
+                    operatorIsExpected = true;
+                }
+                if(display.innerText === '0'){
+                    display.innerHTML = button.innerHTML;
+                    displayValue = display.innerHTML;
+                    operatorIsExpected = true;
+                }
+                else{
+                    display.innerText += button.innerHTML
+                    operatorIsExpected = true;
+                    console.log(displayValue)
+ 
+                }
 
-          
-            
+
+            }
+            else{
+            displayValue = displayValue
+            console.log(displayValue)
+ 
+            }
+        
         })
-    })
-}
-numbersOnScreen()
-
+      
+    })}
 
 
 const operatorButtons = Array.from(document.getElementsByClassName('operator'));
 const operatorsOnScreen = () =>{
     operatorButtons.forEach(button=>{
-        button.addEventListener('click', (e)=>{
+        button.addEventListener('click', ()=>{
             if (operatorIsExpected){
                 display.innerHTML += button.innerHTML;
                 displayValue = display.innerHTML
                 operatorIsExpected = false;
+                numberIsExpected = true;
 
             }
             displayValue = displayValue
             console.log(displayValue)
+            numberIsExpected = true;
  
         }
     )
     })
 }
-operatorsOnScreen()
 
-const equals = document.querySelector('.equal')
+
+
 
 const updateDisplay =()=>{
     equals.addEventListener('click', ()=>{
@@ -87,46 +113,54 @@ const updateDisplay =()=>{
         
         
 
-        const arr = displayValue.split(/\b/g)
+    const arr = displayValue.split(/(\+)/g)
         console.log(arr)
         if(arr.length > 3){
         while(arr[3]!=='='){
-                    let result = calculation(parseInt(arr[0]), arr[1], parseInt(arr[2]))
+                    let result = calculation(Number(arr[0]), arr[1], Number(arr[2]))
                     arr.splice(0,3)
                     arr.unshift(result)
                     display.innerHTML = String(result)
-                    operatorIsExpected = false
+                    // operatorIsExpected = false
+                    numberIsExpected = false
                     console.log(result)
+                    console.log(numberIsExpected)
 
                 } 
                 if(arr[3]==='='){
-                    let result = calculation(parseInt(arr[0]), arr[1], parseInt(arr[2]))
+                    let result = calculation(Number(arr[0]), arr[1], Number(arr[2]))
                     display.innerHTML = String(result)
-                    operatorIsExpected = false
+                    // operatorIsExpected = false
+                    numberIsExpected = false
                     console.log(result)
                 }
             }else{
-                display.innerHTML = ''
-                displayValue = ''
+                display.innerHTML = '0'
+                displayValue = '0'
             }
 
 
             })}
 
 
-
+decimal.addEventListener('click', (e) => {
+    if(display.innerHTML.lastIndexOf('+') >= display.innerHTML.lastIndexOf('.') ||
+     display.innerHTML.lastIndexOf('-') >= display.innerHTML.lastIndexOf('.') || 
+     display.innerHTML.lastIndexOf('*') >= display.innerHTML.lastIndexOf('.') || 
+     display.innerHTML.lastIndexOf('/') >= display.innerHTML.lastIndexOf('.')){
+    display.innerHTML += "."
+    operatorIsExpected = false;
+    
+              
+    }
+               
+    })
+              
     
 
-
-            
+numbersOnScreen()      
     
-
+operatorsOnScreen()
 
 updateDisplay()
-
-
-
-
-
-
 clearDisplay()
