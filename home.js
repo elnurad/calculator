@@ -16,6 +16,8 @@ const numberButtons = Array.from(document.getElementsByClassName('num-button'));
 
 const decimal = document.querySelector('.decimal')
 
+
+
 const calculation =(a, operator, b)=>{
     switch(operator){
         case '+': return a + b;
@@ -25,6 +27,8 @@ const calculation =(a, operator, b)=>{
     }
 
 }
+
+
 
 
 
@@ -61,6 +65,7 @@ const numbersOnScreen = ()=>{
                 }
                 else{
                     display.innerText += button.innerHTML
+                    displayValue = display.innerHTML;
                     operatorIsExpected = true;
                     console.log(displayValue)
  
@@ -69,7 +74,9 @@ const numbersOnScreen = ()=>{
 
             }
             else{
-            displayValue = displayValue
+                display.innerHTML = button.innerHTML;
+                displayValue = display.innerHTML;
+                numberIsExpected = true
             console.log(displayValue)
  
             }
