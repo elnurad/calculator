@@ -101,7 +101,6 @@ const operatorsOnScreen = () =>{
 
 
 
-
 const updateDisplay =()=>{
     equals.addEventListener('click', ()=>{
         if(displayValue.endsWith('=')){
@@ -112,8 +111,16 @@ const updateDisplay =()=>{
         }
         
         
+    
+    // const arr = displayValue.split(/\-|\/|\*|\+|\=/g)
 
-    const arr = displayValue.split(/(\+)/g)
+    
+    // const arr = displayValue.split(/(?=\-)|(?=\/)|(?=\*)|(?=\+)|(?=\=)/g)
+   
+    const arr = displayValue.split(/(?=\-)|(?<=\-)|(?=\/)|(?<=\/)|(?<=\*)|(?=\*)|(?=\+)|(?<=\+)|(?=\=)|(?=\=)/g)
+
+    
+
         console.log(arr)
         if(arr.length > 3){
         while(arr[3]!=='='){
