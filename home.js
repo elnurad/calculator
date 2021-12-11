@@ -17,17 +17,22 @@ const numberButtons = Array.from(document.getElementsByClassName('num-button'));
 const decimal = document.querySelector('.decimal')
 
 
-
 const calculation =(a, operator, b)=>{
     switch(operator){
         case '+': return a + b;
         case '-': return a-b;
         case '*': return a * b;
-        case '/': return a / b;
+        case '/': if(b === 0){
+            alert("Division by zero not allowed")
+            return 0
+        } 
+        else{
+            return a / b
+
+        }
     }
 
 }
-
 
 
 
@@ -118,17 +123,17 @@ const updateDisplay =()=>{
         }
         
         
-    
-    // const arr = displayValue.split(/\-|\/|\*|\+|\=/g)
-
-    
-    // const arr = displayValue.split(/(?=\-)|(?=\/)|(?=\*)|(?=\+)|(?=\=)/g)
    
-    const arr = displayValue.split(/(?=\-)|(?<=\-)|(?=\/)|(?<=\/)|(?<=\*)|(?=\*)|(?=\+)|(?<=\+)|(?=\=)|(?=\=)/g)
+        const arr = displayValue.split(/(?=\-)|(?<=\-)|(?=\/)|(?<=\/)|(?<=\*)|(?=\*)|(?=\+)|(?<=\+)|(?=\=)|(?=\=)/g)
 
     
 
         console.log(arr)
+        if(arr[0]==='-'){
+            newIndexZero = arr[0]+arr[1]
+            arr.splice(0,2,newIndexZero)
+            console.log(arr)
+        }
         if(arr.length > 3){
         while(arr[3]!=='='){
                     let result = calculation(Number(arr[0]), arr[1], Number(arr[2]))

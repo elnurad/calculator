@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Barlow+Condensed:wght@300;600&family=PT+Sans+Narrow&display=swap');
+
 *{
     box-sizing: border-box;
-    font-family: sans-serif;
     margin: 0;
   }
 
+
 body{
-    background: linear-gradient(to right,#1B4F72,#EAF2F8)
+    background: linear-gradient(to right,#57899E,#EAF2F8);
+    /* background-color: #7BA5B7; */
+    font-weight: bold;
+    font-family: 'Architects Daughter', cursive;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'PT Sans Narrow', sans-serif;   
 }
 .container {
    
@@ -18,21 +25,21 @@ body{
     margin: 5% auto;
     border-bottom: 0.06rem solid #fff;
     border-left: 0.06rem solid #fff;
-    
    
     
 }
 
 .grid-box{
+    display: flex;
+    justify-content: center;
+    align-items:center;
     border-top: 0.06rem solid #fff;
     border-right: 0.06rem solid #fff;
-    font-size: 1.5rem;
-    background-color:#ABB2B9;
+    font-size: 1.8rem;
+    background-color:#3A5B69;
     text-align: center;
     cursor: pointer;
-    
-    
-    
+  
 }
 
 .operator:hover, .num-button:hover, .decimal:hover{
@@ -42,14 +49,15 @@ body{
 .display {
     grid-column-start: 1;
     grid-column-end: 5;
-    background-color: rgba(39, 55, 70, 0.7);
+    background-color: #E2D7B6;
+    justify-content: flex-end;
     text-align: right;
     padding: 0.3em;
 }
 .clear {
     grid-column-start: 1;
     grid-column-end: 3;
-    background-color: #943126;
+    background-color: #BD632F;
 }
 
 .zero{
@@ -58,5 +66,5 @@ body{
 }
 .equal {
     grid-row: span 2;
-    background-color: #154360 ;
+    background-color: #D8973C;
 }
