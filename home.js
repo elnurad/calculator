@@ -17,7 +17,7 @@ const numberButtons = Array.from(document.getElementsByClassName('num-button'));
 const decimal = document.querySelector('.decimal')
 
 
-const calculation =(a, operator, b)=>{
+function calculation(a, operator, b){
     switch(operator){
         case '+': return a + b;
         case '-': return a-b;
@@ -41,7 +41,7 @@ const calculation =(a, operator, b)=>{
 const clear = document.querySelector('.clear')
 
 const clearDisplay=()=>{
-    clear.addEventListener('click', ()=> {
+    clear.addEventListener('click', function(){
         display.innerHTML = '0'
         displayValue = '0'
         numberIsExpected = true;
@@ -53,9 +53,9 @@ const clearDisplay=()=>{
 
 
 
-const numbersOnScreen = ()=>{
+function numbersOnScreen(){
     numberButtons.forEach(button=>{
-        button.addEventListener('click', (e)=>{
+        button.addEventListener('click', function(e){
             if (numberIsExpected){
                 if(display.innerText === '0' && e.target.dataset.value === 0){
                 
@@ -92,9 +92,9 @@ const numbersOnScreen = ()=>{
 
 
 const operatorButtons = Array.from(document.getElementsByClassName('operator'));
-const operatorsOnScreen = () =>{
+function operatorsOnScreen(){
     operatorButtons.forEach(button=>{
-        button.addEventListener('click', ()=>{
+        button.addEventListener('click', function(){
             if (operatorIsExpected){
                 display.innerHTML += button.innerHTML;
                 displayValue = display.innerHTML
@@ -113,7 +113,7 @@ const operatorsOnScreen = () =>{
 
 
 
-const updateDisplay =()=>{
+function updateDisplay(){
     equals.addEventListener('click', ()=>{
         if(displayValue.endsWith('=')){
             displayValue = displayValue
@@ -162,7 +162,7 @@ const updateDisplay =()=>{
             })}
 
 
-decimal.addEventListener('click', (e) => {
+decimal.addEventListener('click', function(e){
     if(display.innerHTML.lastIndexOf('+') >= display.innerHTML.lastIndexOf('.') ||
      display.innerHTML.lastIndexOf('-') >= display.innerHTML.lastIndexOf('.') || 
      display.innerHTML.lastIndexOf('*') >= display.innerHTML.lastIndexOf('.') || 

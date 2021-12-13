@@ -8,6 +8,7 @@
 
 body{
     background: linear-gradient(to right,#57899E,#EAF2F8);
+    left: 0;
     /* background-color: #7BA5B7; */
     font-weight: bold;
     font-family: 'Architects Daughter', cursive;
