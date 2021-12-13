@@ -124,9 +124,11 @@ function updateDisplay(){
         
         
    
-        const arr = displayValue.split(/(?=\-)|(?<=\-)|(?=\/)|(?<=\/)|(?<=\*)|(?=\*)|(?=\+)|(?<=\+)|(?=\=)|(?=\=)/g)
+        // const arr = displayValue.split(/(?=\-)|(?<=\-)|(?=\/)|(?<=\/)|(?<=\*)|(?=\*)|(?=\+)|(?<=\+)|(?=\=)|(?=\=)/g)
 
-    
+        const arr = displayValue.split(/(?=[\-\+\/\*\=])|(?<=[\-\+\/\*\=])/)
+        
+        // const arr = displayValue.split(/(?=[\-\+\/\*\=])|(?:[\-\+\/\*\=])/)
 
         console.log(arr)
         if(arr[0]==='-'){

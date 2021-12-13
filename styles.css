@@ -7,9 +7,9 @@
 
 
 body{
-    background: linear-gradient(to right,#57899E,#EAF2F8);
-    left: 0;
-    /* background-color: #7BA5B7; */
+    /* background: -webkit-linear-gradient(#57899e,#EAF2F8); */
+   
+    background-color: #72b2ce;
     font-weight: bold;
     font-family: 'Architects Daughter', cursive;
     font-family: 'Barlow Condensed', sans-serif;
