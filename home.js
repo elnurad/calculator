@@ -1,8 +1,8 @@
-let operatorIsExpected = false;
+let operatorIsExpected = false;//use this to prevent operators on display if it is preceded by another operator
 
-let numberIsExpected = true;
+let numberIsExpected = true;//use this to make sure that operator is followed by a number
 
-let result = ''
+let result = '' //to store results of calculations
 
 const equals = document.querySelector('.equal')
 
@@ -16,7 +16,7 @@ const numberButtons = Array.from(document.getElementsByClassName('num-button'));
 
 const decimal = document.querySelector('.decimal')
 
-
+//function to be used for calculations in the main function
 function calculation(a, operator, b){
     switch(operator){
         case '+': return a + b;
@@ -37,7 +37,7 @@ function calculation(a, operator, b){
 
 
 
-//clear
+//function to clear display
 const clear = document.querySelector('.clear')
 
 const clearDisplay=()=>{
@@ -52,7 +52,7 @@ const clearDisplay=()=>{
 
 
 
-
+//function to display numbers on display
 function numbersOnScreen(){
     numberButtons.forEach(button=>{
         button.addEventListener('click', function(e){
@@ -91,6 +91,7 @@ function numbersOnScreen(){
     })}
 
 
+//function to display operators on display screen
 const operatorButtons = Array.from(document.getElementsByClassName('operator'));
 function operatorsOnScreen(){
     operatorButtons.forEach(button=>{
@@ -112,7 +113,7 @@ function operatorsOnScreen(){
 }
 
 
-
+//function where the calculations happen and it is displayed on the screen
 function updateDisplay(){
     equals.addEventListener('click', ()=>{
         if(displayValue.endsWith('=')){
@@ -121,29 +122,39 @@ function updateDisplay(){
             display.innerHTML += equals.innerHTML;
             displayValue = display.innerHTML
         }
-        
-        
-   
-        // const arr = displayValue.split(/(?=\-)|(?<=\-)|(?=\/)|(?<=\/)|(?<=\*)|(?=\*)|(?=\+)|(?<=\+)|(?=\=)|(?=\=)/g)
-
-        // const arr = displayValue.split(/(?=[\-\+\/\*\=])|(?<=[\-\+\/\*\=])/)
-        
-        // const arr = displayValue.split(/(?=[\-\+\/\*\=])|(?:[\-\+\/\*\=])/)
-        const arr = displayValue.match(/\d+|[*/=+-]/g)
+        //break the string down into an array at operators
+        let arr = displayValue.match(/\d+|[.*/=+-]/g)
 
         console.log(arr)
+        //to create a new array (e.g ['8','.', '5', + '3', '.', '2'] ==> ['8.2', '+', '3.2'])
+        let i = 0
+        while(i<arr.length){
+            if(arr[i]==='.'){
+                let decimalNum = `${arr[i-1]}${arr[i]}${arr[i+1]}`
+                console.log(decimalNum)
+                arr.splice(i-1,3,decimalNum)
+                
+                
+                
+
+            }
+            i++
+            
+        }
+        
+        //to allow calculations if the number on display is negative
         if(arr[0]==='-'){
-            newIndexZero = arr[0]+arr[1]
+            let newIndexZero = arr[0]+arr[1]
             arr.splice(0,2,newIndexZero)
             console.log(arr)
         }
+        //calculations
         if(arr.length > 3){
         while(arr[3]!=='='){
                     let result = calculation(Number(arr[0]), arr[1], Number(arr[2]))
                     arr.splice(0,3)
                     arr.unshift(result)
                     display.innerHTML = String(result)
-                    // operatorIsExpected = false
                     numberIsExpected = false
                     console.log(result)
                     console.log(numberIsExpected)
@@ -152,7 +163,6 @@ function updateDisplay(){
                 if(arr[3]==='='){
                     let result = calculation(Number(arr[0]), arr[1], Number(arr[2]))
                     display.innerHTML = String(result)
-                    // operatorIsExpected = false
                     numberIsExpected = false
                     console.log(result)
                 }
@@ -165,6 +175,7 @@ function updateDisplay(){
             })}
 
 
+//for decimal symbol
 decimal.addEventListener('click', function(e){
     if(display.innerHTML.lastIndexOf('+') >= display.innerHTML.lastIndexOf('.') ||
      display.innerHTML.lastIndexOf('-') >= display.innerHTML.lastIndexOf('.') || 

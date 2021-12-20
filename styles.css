@@ -7,25 +7,20 @@
 
 
 body{
-    /* background: -webkit-linear-gradient(#57899e,#EAF2F8); */
-   
-    background-color: #72b2ce;
+    background-color: #90c1f0;
     font-weight: bold;
     font-family: 'Architects Daughter', cursive;
     font-family: 'Barlow Condensed', sans-serif;
     font-family: 'PT Sans Narrow', sans-serif;   
 }
 .container {
-   
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-
     width: 65%;
     height: 70vh;
-
     margin: 5em auto;
-    border-bottom: 0.06rem solid #fff;
-    border-left: 0.06rem solid #fff;
+    border-bottom: 0.06rem solid rgb(224, 197, 197);;
+    border-left: 0.06rem solid rgb(224, 197, 197);
    
     
 }
@@ -34,8 +29,8 @@ body{
     display: flex;
     justify-content: center;
     align-items:center;
-    border-top: 0.06rem solid #fff;
-    border-right: 0.06rem solid #fff;
+    border-top: 0.06rem solid rgb(224, 197, 197);
+    border-right: 0.06rem solid rgb(224, 197, 197);;
     font-size: 1.8rem;
     background-color:#3A5B69;
     text-align: center;
@@ -43,8 +38,9 @@ body{
   
 }
 
-.operator:hover, .num-button:hover, .decimal:hover{
-    background-color: #F4F6F7;
+.operator:hover, .num-button:hover, .decimal:hover, .clear:hover, .equal:hover{
+    /* background-color: #F4F6F7; */
+    opacity: 0.7;
 
 }
 .display {
