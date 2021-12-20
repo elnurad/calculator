@@ -20,10 +20,10 @@ body{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
-    width: 70%;
+    width: 65%;
     height: 70vh;
 
-    margin: 0 auto;
+    margin: 5em auto;
     border-bottom: 0.06rem solid #fff;
     border-left: 0.06rem solid #fff;
    
@@ -69,3 +69,15 @@ body{
     grid-row: span 2;
     background-color: #D8973C;
 }
+
+
+@media (min-width: 600px) {
+
+    .container {
+        width: 30vw;
+        height: 70vh;
+    }
+
+
+}
+
